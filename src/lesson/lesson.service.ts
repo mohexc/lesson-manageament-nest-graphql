@@ -5,18 +5,9 @@ import { Lesson } from './lesson.entity';
 import * as crypto from 'crypto'
 import { CreateLessonInput } from './lesson.input';
 
-
 @Injectable()
 export class LessonService {
     constructor(@InjectRepository(Lesson) private lessonRepository: Repository<Lesson>) { }
-
-    async getLesson(id: string): Promise<Lesson> {
-        return this.lessonRepository.findOne({ id })
-    }
-
-    async getLessons(): Promise<Lesson[]> {
-        return this.lessonRepository.find()
-    }
 
     async createLesson(createLessonInput: CreateLessonInput): Promise<Lesson> {
         const { name, startDate, endDate } = createLessonInput
@@ -29,4 +20,13 @@ export class LessonService {
 
         return this.lessonRepository.save(createLesson)
     }
+
+    async getLessons(): Promise<Lesson[]> {
+        return this.lessonRepository.find()
+    }
+
+    async getLesson(id: string): Promise<Lesson> {
+        return this.lessonRepository.findOne({ id })
+    }
+
 }
