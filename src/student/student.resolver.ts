@@ -22,4 +22,5 @@ export class StudentResolver {
     createStudent(@Args('createStudentInput') createStudentInput: CreateStudentInput) {
         return this.studentService.createSutdent(createStudentInput)
     }
+
 }
